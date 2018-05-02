@@ -1,0 +1,67 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+.App-right {
+  margin-left: 60px;
+  /*border: 3px solid #73AD21;*/
+}
+
+
+.tabcontent {
+  display: none;
+  margin-left:60px;
+  margin-top:50px;
+}
+
+.tablinks{
+
+}
+
+.getcoinbg {
+  position: absolute;
+  background: rgba(127,255,212, 0.3);
+  background: linear-gradient(to bottom right, rgba(127,255,212, 0.3), rgba(0,255,255,0.3));
+  top: 50px;
+  bottom: 0;
+  left:60px;
+  right:0px;
+}
+
+.trendingbg {
+  position: absolute;
+  
+  color: white;
+  background: rgb(123,104,238);
+  background: linear-gradient(to bottom right, rgb(123,104,238), rgb(139,0,139));
+  
+  top: 50px;
+  bottom: 0;
+  left:60px;
+  right:0px;
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
