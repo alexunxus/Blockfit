@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: fantasy;
   background-color: #F8F8FF;
 }
 
@@ -17,34 +17,24 @@ input {
   border-radius: 3px;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
+.passinput {
+  width: 40%;
+  width: 600px;
+  padding: 12px 20px;
+  margin: 8px 0;
+
+  color:black;
+  background:white;
+  display: inline-block;
+  border: none;
+  
 }
 
-nav a {
-  width: 14.28%;
-  width: 15em;
-  padding: 0em;
-  color: rgba(255,255,255, 0.75);
-  background-color: palevioletred;
-  border: 2px solid white;
-  border-radius: 3px;
-  text-decoration: none;
-  text-align: center;
+button.active {
+  outline: none;
+  border: none;
 }
 
-nav a:hover, nav a:focus {
-  color: rgba(255,255,255, 1.0);
-  text-decoration: none;
-}
-
-nav a::before {
-  display: none;
-}
 /* The navigation bar */
 .navbar {
     overflow: hidden;
@@ -86,9 +76,9 @@ nav a::before {
 	text-align: left;
 	text-decoration: none;
 
-    background: white;
-    border: none;
-    border-radius: 3px;
+  background: white;
+  border: none;
+  border-radius: 3px;
 }
 .navbar input:hover {
 	border-color: red;
@@ -107,10 +97,12 @@ nav a::before {
 }
 .navbar button:hover {
 	background: #ddd;
-	color: red;
+	color: black;
 }
 
 .navbar button.active {
+  outline: none;
+  border: none;
 	background: #ddd;
 	color: black;
 }
@@ -172,7 +164,7 @@ p{
   font-size: 2em;
   color: white;
   background: palevioletred;
-  border-width: 1px;
+  border:none;
   border-radius: 10px;
 }
 
@@ -180,6 +172,30 @@ p{
   color: palevioletred;
   background: white;
 }
+
+.passbutton {
+  width: 40%;
+  width: 600px;
+  padding: 12px 20px;
+  margin: 8px 0;
+
+  text-align: center;
+  font-size: 1em;
+  
+  color: black;
+  background: #ffffe6;
+  
+  border: none;
+  border-radius: 3px;
+
+  cursor: pointer;
+}
+
+.passbutton {
+  border: none;
+  outline:none;
+}
+
 .dollar {
   color: palevioletred;
   background: papayawhip;

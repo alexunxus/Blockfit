@@ -1,0 +1,27 @@
+#wrapper, .sub {
+	background: hsla(200, 50%, 10%, 0.05);
+	overflow: hidden;
+	box-shadow: 0px 0px 20px 2px hsla(200, 50%, 10%, 0.1) inset;
+	border: 1px solid hsla(200, 50%, 10%, 0.1);
+}
+
+#wrapper {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	margin: calc(50vh - 250px) calc(50vw - 250px);
+}
+
+.sub {
+	position: relative;
+	width: 90%;
+	height: 90%;
+	transform-origin: 50% 50%;
+	transform: rotate(12deg);
+	animation: 100s rot linear infinite;
+}
+
+@keyframes rot {
+	0% { transform: rotate(12deg);}
+	100% { transform: rotate(372deg);}
+}

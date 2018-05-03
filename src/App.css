@@ -31,6 +31,8 @@
   display: none;
   margin-left:60px;
   margin-top:50px;
+  overflow: scroll;
+  height:100vh;
 }
 
 .tablinks{
@@ -38,7 +40,7 @@
 }
 
 .getcoinbg {
-  position: absolute;
+  position: fixed;
   background: rgba(127,255,212, 0.3);
   background: linear-gradient(to bottom right, rgba(127,255,212, 0.3), rgba(0,255,255,0.3));
   top: 50px;
@@ -48,20 +50,38 @@
 }
 
 .trendingbg {
-  position: absolute;
-  
   color: white;
   background: rgb(123,104,238);
   background: linear-gradient(to bottom right, rgb(123,104,238), rgb(139,0,139));
-  
-  top: 50px;
-  bottom: 0;
-  left:60px;
-  right:0px;
 }
+
+
+.logimg {
+  text-align:center;
+  font-size:20em;
+  width: 40%;
+}
+.panel {
+  width: 100%;
+  color: white;
+  background: black;
+  border: palevioletred;
+  padding: 12px 14px;
+  margin: 12px 14px;
+}
+
 
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+.icon-coin-dollar:before {
+  content: "\e93b";
+}
+
+.icon-account_circle:before {
+  content: "\e900";
 }

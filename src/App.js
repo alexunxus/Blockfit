@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './bg.css';
 import styled, {keyframes} from 'styled-components';
 import Plot, {Plotly} from 'react-plotly.js';
 
@@ -9,6 +10,27 @@ const images = {
   logo1: require("./logo1.png"),
   logo2: require("./logo2.png"),
 };
+
+const Shuan = {
+  photo: require("./person1.jpg"),
+  id: 1,
+  name: "Shuan-Chi Tsai",
+  usrname: "tsea87",
+  password: "12345",
+  succ: 2,
+  fail: 0,
+  nonexe: 0,
+  betprice: [ 0.5, 0.4, 0.2, 0.6, 0.7, 0.8, 0.2, 0.34, 0.56, 0.45, 0.33],
+  bid: [],
+  ask: [],
+  renderpanel() {
+    return(
+      <div className="panel" id="1" >
+        TODO: the panel of person
+      </div>
+    )
+  },
+}
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -63,6 +85,16 @@ function openTab(event, key) {
   event.currentTarget.className += " active";
 }
 
+function renderPug() {
+  return(
+    <div >
+    <div id="wrapper"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub"><div className="sub">
+    </div></div></div></div></div></div></div></div></div></div></div></div>
+    </div>
+  )
+}
+
+
 
 export class Graph extends React.Component {
   render() {
@@ -102,14 +134,21 @@ class App extends Component {
     document.getElementById(id).style.display="block";
   }
 
+  renderProfile(id, ) {
+
+
+  }
+
   render() { 
     return (
       <div className="App">
         <div className='navbar'>
-          <button className="tablinks" onClick={(e)=> openTab(e,'home')}> <i className="fa fa-home"></i> Home </button>
+          <button className="tablinks" onClick={(e)=> openTab(e,'home')}> <img src={images.logo2} width="20px" alt=""/> Home </button>
           <a className="tablinks" onClick={(e)=>openTab(e,'buycoin')}> <i className="fab fa-monero"></i> Buy coins</a>
-          <a className="tablinks" onClick={(e)=>openTab(e,'trending')}> Trending</a>
-          <a > <i className="fab fa-keycdn"></i> Login </a>
+          <a className="tablinks" onClick={(e)=>openTab(e,'markets')}> <span className="icon-coin-dollar"></span>Markets</a>
+          <a className="tablinks" onClick={(e)=>openTab(e,'challenge')}> <i class="fas fa-plus-circle"></i> Add challenge</a>
+          <a className="tablinks" onClick={(e)=>openTab(e, "account")}> <i className="fab fa-keycdn"></i> Login </a>
+          <a className="tablinks" onClick={(e)=>openTab(e, "profile")}> <i className="fab fa-keycdn"></i> Profile </a>
           <input placeholder="@Search" type="text"/>
         </div>
         {this.rendersideNav()}
@@ -145,7 +184,7 @@ class App extends Component {
               <Subtitle> About us </Subtitle>
 		      </div>
 	        <Wrapper>
-	        Founder: Shuan-Chi Tsai, Yu-Chi Hsieh<br/>
+	        Founder: Shuan-Chi Tsai, Yu-Chi Hsieh, Alex Huang<br/>
             Web designer: Alex Huang <br/>
 		        Contact us: (02)1234-5678 <br/>
             Our website: <a href="#"> <i className="fas fa-info-circle"></i> About us </a> <br/>
@@ -163,13 +202,34 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div id="trending" className="tabcontent">
-          <div className="trendingbg">
-            <h1 >Trending</h1><br/>
-            Trending graphes here.
+        <div id="markets" className="tabcontent trendingbg">
+          <h1 >Markets</h1><br/>
+          Here is graph <br/>
+          <div float="left">
             <Graph/>
           </div>
         </div>
+        <div id="challenge" className="tabcontent">
+          TODO: add challenge
+        </div>
+        <div id="profile" className="tabcontent">
+          {renderPug()}
+          TODO: profile <br/>
+          {Shuan.renderpanel()}
+        </div>
+        <div id="account" className="tabcontent trendingbg" font-size="2em">
+          <h1 padding="3em"> Login </h1>
+          <span class="logimg icon-account_circle"></span> <br/>
+          <label for="uname"><b>Username</b></label> <br/>
+          <input className="passinput" type="text" placeholder="username@google.com.tw"/> <br/>
+          <label for="psw"><b>Password</b></label> <br/>
+          <input className="passinput" type="password" placeholder="Enter password here..."/> <br/>
+          <button className="passbutton"> Submit </button> <br/>
+          <label>
+            <input type="checkbox" checked="checked" name="remember" /> Remember me
+          </label>
+        </div>
+
       </div>
     );
   }
@@ -196,3 +256,4 @@ const Input = styled.input`
   border-radius: 3px;
 `;
 */
+
