@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './bg.css';
 import styled, {keyframes} from 'styled-components';
-import Plot, {Plotly} from 'react-plotly.js';
+import Plot from 'react-plotly.js';
 
 
 const images = {
@@ -20,15 +20,32 @@ const Shuan = {
   succ: 2,
   fail: 0,
   nonexe: 0,
+  category:"C",
   betprice: [ 0.5, 0.4, 0.2, 0.6, 0.7, 0.8, 0.2, 0.34, 0.56, 0.45, 0.33],
   bid: [],
   ask: [],
   renderpanel() {
     return(
-      <div className="panel" id="1" >
-        TODO: the panel of person
+      <div id={this.id} className="panel">
+        <div className="panel-img">
+          <img src={this.photo} alt="" className="img-chopper"/> <br/>
+          <h1>{this.name}</h1>
+        </div>
+        <hr className="double"/>
+        <div className="panel-info">
+          <h2>Registered ID: {this.id} </h2>
+          <h2>Statistics:</h2>
+          <ul>
+            <li>Success count: {this.succ}</li>
+            <li>Failed count: {this.fail} </li>
+            <li>Non execution: {this.nonexe} </li>
+          </ul>
+          <h2> Latest habit category: {this.category}</h2>
+        </div>
       </div>
     )
+  },
+  renderGraph() {
   },
 }
 
@@ -94,6 +111,20 @@ function renderPug() {
   )
 }
 
+function confirmLogin(e) {
+  document.getElementById("accountTab").style.display="none";
+  document.getElementById("profileTab").style.display="block";
+  document.getElementById("logoutTab").style.display="block";
+  openTab(e, "profile");
+}
+
+function logout(e) {
+  document.getElementById("profileTab").style.display="none";
+  document.getElementById("accountTab").style.display="block";
+  document.getElementById("logoutTab").style.display="none";
+  openTab(e, "home");
+}
+
 
 
 export class Graph extends React.Component {
@@ -134,11 +165,6 @@ class App extends Component {
     document.getElementById(id).style.display="block";
   }
 
-  renderProfile(id, ) {
-
-
-  }
-
   render() { 
     return (
       <div className="App">
@@ -147,8 +173,9 @@ class App extends Component {
           <a className="tablinks" onClick={(e)=>openTab(e,'buycoin')}> <i className="fab fa-monero"></i> Buy coins</a>
           <a className="tablinks" onClick={(e)=>openTab(e,'markets')}> <span className="icon-coin-dollar"></span>Markets</a>
           <a className="tablinks" onClick={(e)=>openTab(e,'challenge')}> <i class="fas fa-plus-circle"></i> Add challenge</a>
-          <a className="tablinks" onClick={(e)=>openTab(e, "account")}> <i className="fab fa-keycdn"></i> Login </a>
-          <a className="tablinks" onClick={(e)=>openTab(e, "profile")}> <i className="fab fa-keycdn"></i> Profile </a>
+          <a className="tablinks" onClick={(e)=>openTab(e, "account")} id="accountTab"> <i className="fab fa-keycdn"></i> Login </a>
+          <a className="tablinks" onClick={(e)=>openTab(e, "profile")} id="profileTab" style={{display: "none"}}> <i className="fab fa-keycdn"></i> Profile </a>
+          <a className="tablinks" onClick={(e)=>logout(e)} id="logoutTab" style={{display: "none"}}> <i className="fa fa-sign-out"></i> Logout</a>
           <input placeholder="@Search" type="text"/>
         </div>
         {this.rendersideNav()}
@@ -187,7 +214,7 @@ class App extends Component {
 	        Founder: Shuan-Chi Tsai, Yu-Chi Hsieh, Alex Huang<br/>
             Web designer: Alex Huang <br/>
 		        Contact us: (02)1234-5678 <br/>
-            Our website: <a href="#"> <i className="fas fa-info-circle"></i> About us </a> <br/>
+            Our website: <a href="https://tsea87.wixsite.com/blockfit"> <i className="fas fa-info-circle"></i> About us </a> <br/>
             {this.renderIcon("fab fa-twitter-square")}
             {this.renderIcon("fab fa-facebook")}
             {this.renderIcon("fab fa-github-square")}
@@ -210,11 +237,11 @@ class App extends Component {
           </div>
         </div>
         <div id="challenge" className="tabcontent">
-          TODO: add challenge
+          <h1> Add challenge !</h1>
         </div>
         <div id="profile" className="tabcontent">
           {renderPug()}
-          TODO: profile <br/>
+          <h1>Personal Profile</h1>
           {Shuan.renderpanel()}
         </div>
         <div id="account" className="tabcontent trendingbg" font-size="2em">
@@ -224,12 +251,11 @@ class App extends Component {
           <input className="passinput" type="text" placeholder="username@google.com.tw"/> <br/>
           <label for="psw"><b>Password</b></label> <br/>
           <input className="passinput" type="password" placeholder="Enter password here..."/> <br/>
-          <button className="passbutton"> Submit </button> <br/>
+          <button className="passbutton" onClick={(e) => confirmLogin(e)}> Submit </button> <br/>
           <label>
             <input type="checkbox" checked="checked" name="remember" /> Remember me
           </label>
         </div>
-
       </div>
     );
   }
@@ -237,23 +263,3 @@ class App extends Component {
 
 
 export default App;
-/*
-const Footer = styled.footer`
-  position: fixed;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  padding: 4em;
-  background: papayawhip;
-`;
-
-const Input = styled.input`
-  padding: 0.5em;
-  Margin-left: 0em;
-  color: palevioletred;
-  background: papayawhip;
-  border: none;
-  border-radius: 3px;
-`;
-*/
-

@@ -61,13 +61,50 @@
   font-size:20em;
   width: 40%;
 }
+
+.img-chopper {
+  width: 60%;
+  display: inline;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 .panel {
-  width: 100%;
+  width: auto;
+  text-align: left;
+
+  display:flex;
+  flex-direction: row;
+  
+  flex-wrap: wrap;
+
+
   color: white;
-  background: black;
-  border: palevioletred;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
   padding: 12px 14px;
   margin: 12px 14px;
+}
+
+.panel-img {
+  flex: 0 0 30%;
+  
+  text-align:center;
+  /*border: 10px solid red;*/
+  
+}
+
+.panel-info {
+  flex: 1 1 30%;
+
+  padding: 1em;
+  /*border: 10px solid red;*/
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 
