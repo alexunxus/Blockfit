@@ -5,7 +5,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: fantasy;
+  /*font-family: fantasy;*/
+  font-family: Spinnaker;
   background-color: #F8F8FF;
 }
 
@@ -19,7 +20,7 @@ input {
 
 .passinput {
   width: 40%;
-  width: 600px;
+  /*width: 600px;*/
   padding: 12px 20px;
   margin: 8px 0;
 
@@ -51,7 +52,7 @@ button.active {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 16px;
     text-decoration: none;
     cursor: pointer;
 }
@@ -173,9 +174,37 @@ p{
   background: white;
 }
 
+
+.mytradebt {
+  width: 40%;
+  font-size: 1em;
+  text-align: center;
+  padding: 12px 14px;
+  
+  color: white;
+  background: black;
+
+  border: 3px solid white;
+  border-radius: 3px;
+
+  position: relative;
+  float: right;
+}
+
+.mytradebt:hover {
+  background: rgba(255, 255, 255, 0.7);
+  color: black;
+  outline: none;
+}
+.mytradebt.active {
+  outline: none;
+}
+
+
+
 .passbutton {
   width: 40%;
-  width: 600px;
+  /*width: 600px;*/
   padding: 12px 20px;
   margin: 8px 0;
 
@@ -249,6 +278,25 @@ p{
 hr.double {
   margin: 20px;
   border-top: 1px double red;
+}
+
+table, td, th {
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tb {
+  text-align: center;
+  font-size: 1em;
 }
 
 

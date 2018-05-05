@@ -86,25 +86,76 @@
   margin: 12px 14px;
 }
 
+.delmar {
+  padding: none;
+  margin: none;
+  background: rgba(0,0,0,0);
+}
+
 .panel-img {
   flex: 0 0 30%;
   
   text-align:center;
-  /*border: 10px solid red;*/
+  /*border: 2px solid red;*/
   
 }
 
 .panel-info {
   flex: 1 1 30%;
 
-  padding: 1em;
-  /*border: 10px solid red;*/
+  padding: 0em;
+  /*border: 2px solid red;*/
+}
+.panel-opa {
+  background: rgba(0,0,0,0);
+}
+
+.panel-gray {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
+}
+
+.marketpanel {
+  width: auto;
+  text-align: left;
+  display:flex;
+  flex-direction: row;
+  
+  flex-wrap: wrap;
+
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  padding: 12px 14px;
+  margin: 12px 14px;
+}
+.marketinfo {
+  flex: 1 1 100%;
+
+  padding: 1em;
+}
+
+.marketstat {
+  /*market statistic*/
+  flex: 0 0 40%;
+  
+  overflow: scroll;
+}
+
+.marketvolume {
+  flex:0 0 40%;
+  background: rgba(255,255, 255, 0.7);
+  overflow: scroll;
+}
+
+.markettable {
+  flex:1 1 20%;
+  overflow: scroll;
 }
 
 

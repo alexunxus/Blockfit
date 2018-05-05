@@ -1,59 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
 import './bg.css';
+import Person from './person.js'
 import styled, {keyframes} from 'styled-components';
-import Plot from 'react-plotly.js';
+//import Plot from 'react-plotly.js';
 
 
 const images = {
   fig: require("./connection.png"),
   logo1: require("./logo1.png"),
   logo2: require("./logo2.png"),
+  login: require("./account.svg"),
 };
 
-const Shuan = {
-  photo: require("./person1.jpg"),
-  id: 1,
-  name: "Shuan-Chi Tsai",
-  usrname: "tsea87",
-  password: "12345",
-  succ: 2,
-  fail: 0,
-  nonexe: 0,
-  category:"C",
-  betprice: [ 0.5, 0.4, 0.2, 0.6, 0.7, 0.8, 0.2, 0.34, 0.56, 0.45, 0.33],
-  bid: [],
-  ask: [],
-  renderpanel() {
-    return(
-      <div id={this.id} className="panel">
-        <div className="panel-img">
-          <img src={this.photo} alt="" className="img-chopper"/> <br/>
-          <h1>{this.name}</h1>
-        </div>
-        <hr className="double"/>
-        <div className="panel-info">
-          <h2>Registered ID: {this.id} </h2>
-          <h2>Statistics:</h2>
-          <ul>
-            <li>Success count: {this.succ}</li>
-            <li>Failed count: {this.fail} </li>
-            <li>Non execution: {this.nonexe} </li>
-          </ul>
-          <h2> Latest habit category: {this.category}</h2>
-        </div>
-      </div>
-    )
-  },
-  renderGraph() {
-  },
-}
+let Shuan = new Person(1, "Shuan-Chi Tsai", "tsea87", "12345", 8, 2, 1, "C", 
+  [ 0.5, 0.45, 0.44, 0.6, 0.55, 0.65, 0.66, 0.70, 0.69, 0.77, 0.76]);
+let YuChi = new Person(2, "Yu-Chi Hsieh", "ychsieh87", "54321", 4, 5, 2, "E", 
+  [ 0.5, 0.49, 0.45, 0.43, 0.46, 0.50, 0.42, 0.41, 0.36, 0.33, 0.31]);
 
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
   color: palevioletred;
 `;
+
 const Subtitle = styled.h2`
   font-size: 1.2em;
   text-align: center;
@@ -125,28 +95,6 @@ function logout(e) {
   openTab(e, "home");
 }
 
-
-
-export class Graph extends React.Component {
-  render() {
-    return (
-      <Plot
-        data={[
-          {
-            x: [1, 2, 3],
-            y: [2, 6, 3],
-            type: 'scatter',
-            mode: 'lines+points',
-            marker: {color: 'red'},
-          },
-          {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
-        ]}
-        layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
-      />
-    );
-  }
-}
-
 class App extends Component {
   renderIcon(name) {
     return (
@@ -172,7 +120,7 @@ class App extends Component {
           <button className="tablinks" onClick={(e)=> openTab(e,'home')}> <img src={images.logo2} width="20px" alt=""/> Home </button>
           <a className="tablinks" onClick={(e)=>openTab(e,'buycoin')}> <i className="fab fa-monero"></i> Buy coins</a>
           <a className="tablinks" onClick={(e)=>openTab(e,'markets')}> <span className="icon-coin-dollar"></span>Markets</a>
-          <a className="tablinks" onClick={(e)=>openTab(e,'challenge')}> <i class="fas fa-plus-circle"></i> Add challenge</a>
+          <a className="tablinks" onClick={(e)=>openTab(e,'challenge')}> <i className="fas fa-plus-circle"></i> Add challenge</a>
           <a className="tablinks" onClick={(e)=>openTab(e, "account")} id="accountTab"> <i className="fab fa-keycdn"></i> Login </a>
           <a className="tablinks" onClick={(e)=>openTab(e, "profile")} id="profileTab" style={{display: "none"}}> <i className="fab fa-keycdn"></i> Profile </a>
           <a className="tablinks" onClick={(e)=>logout(e)} id="logoutTab" style={{display: "none"}}> <i className="fa fa-sign-out"></i> Logout</a>
@@ -229,12 +177,11 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div id="markets" className="tabcontent trendingbg">
+        <div id="markets" className="tabcontent">
+          {renderPug()}
           <h1 >Markets</h1><br/>
-          Here is graph <br/>
-          <div float="left">
-            <Graph/>
-          </div>
+          {Shuan.rendermarket()}
+          {YuChi.rendermarket()}
         </div>
         <div id="challenge" className="tabcontent">
           <h1> Add challenge !</h1>
@@ -244,12 +191,12 @@ class App extends Component {
           <h1>Personal Profile</h1>
           {Shuan.renderpanel()}
         </div>
-        <div id="account" className="tabcontent trendingbg" font-size="2em">
+        <div id="account" className="tabcontent trendingbg" style={{fontSize: "2em"}}>
           <h1 padding="3em"> Login </h1>
-          <span class="logimg icon-account_circle"></span> <br/>
-          <label for="uname"><b>Username</b></label> <br/>
+          <img src={images.login} width="30%" float="center" alt=""/> <br/>
+          <label htmlFor="uname"><b>Username</b></label> <br/>
           <input className="passinput" type="text" placeholder="username@google.com.tw"/> <br/>
-          <label for="psw"><b>Password</b></label> <br/>
+          <label htmlFor="psw"><b>Password</b></label> <br/>
           <input className="passinput" type="password" placeholder="Enter password here..."/> <br/>
           <button className="passbutton" onClick={(e) => confirmLogin(e)}> Submit </button> <br/>
           <label>
@@ -261,5 +208,5 @@ class App extends Component {
   }
 }
 
-
+/*<span class="logimg icon-account_circle"></span> <br/>*/
 export default App;
