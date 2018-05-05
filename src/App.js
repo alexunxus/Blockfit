@@ -11,6 +11,7 @@ const images = {
   logo1: require("./logo1.png"),
   logo2: require("./logo2.png"),
   login: require("./account.svg"),
+  market: require("./market.svg"),
 };
 
 let Shuan = new Person(1, "Shuan-Chi Tsai", "tsea87", "12345", 8, 2, 1, "C", 
@@ -119,7 +120,7 @@ class App extends Component {
         <div className='navbar'>
           <button className="tablinks" onClick={(e)=> openTab(e,'home')}> <img src={images.logo2} width="20px" alt=""/> Home </button>
           <a className="tablinks" onClick={(e)=>openTab(e,'buycoin')}> <i className="fab fa-monero"></i> Buy coins</a>
-          <a className="tablinks" onClick={(e)=>openTab(e,'markets')}> <span className="icon-coin-dollar"></span>Markets</a>
+          <a className="tablinks" onClick={(e)=>openTab(e,'markets')}> <img src={images.market} width="15px" alt=""/> Markets</a>
           <a className="tablinks" onClick={(e)=>openTab(e,'challenge')}> <i className="fas fa-plus-circle"></i> Add challenge</a>
           <a className="tablinks" onClick={(e)=>openTab(e, "account")} id="accountTab"> <i className="fab fa-keycdn"></i> Login </a>
           <a className="tablinks" onClick={(e)=>openTab(e, "profile")} id="profileTab" style={{display: "none"}}> <i className="fab fa-keycdn"></i> Profile </a>
@@ -184,7 +185,9 @@ class App extends Component {
           {YuChi.rendermarket()}
         </div>
         <div id="challenge" className="tabcontent">
+          {renderPug()}
           <h1> Add challenge !</h1>
+          {Shuan.rendercreate()}
         </div>
         <div id="profile" className="tabcontent">
           {renderPug()}

@@ -57,6 +57,23 @@ function makeData(len = 6) {
 }
 
 
+function clickbid(e, id) {
+  console.log(id.replace("BID", "ASK"));
+  document.getElementById(id.replace("BID", "ASK")).className.replace("active", "");
+  let x = document.getElementById(id);
+  if(x.className.indexOf("active") === -1){
+    x.className += (" active");
+  }
+}
+
+function clickask(e, id) {
+  document.getElementById(id.replace("ASK", "BID")).className.replace("active", "");
+  let x = document.getElementById(id)
+  if(x.className.indexOf("active")===-1){
+    x.className += (" active");
+  }
+}
+
 
 class Person {
   constructor(id, name, usrname, password, succ, fail, nonexe, category, betprice) {
@@ -90,6 +107,40 @@ class Person {
             <li>Non execution: {this.nonexe} </li>
           </ul>
           <h2> Latest habit category: {this.category}</h2>
+        </div>
+      </div>
+    )
+  }
+  rendercreate() {
+    return(
+      <div id={this.id} className="panel">
+        <div className="panel-img" style={{minWidth:"300px"}}>
+          <img src={this.photo} alt="" className="img-chopper"/> <br/>
+          <h1>{this.name}</h1>
+        </div>
+        <hr className="double"/>
+        <div className="panel-info">
+          <div style={{display: "flex", displayDirectoin:"row", flexWrap:"wrap"}}>
+            <div style={{flex: "0 0 40%", padding:"1em"}}>
+              <h2>Registered ID: {this.id} </h2>
+              <h2>Current reputation:</h2>
+              <ul>
+                <li>Success count: {this.succ}</li>
+                <li>Failed count: {this.fail} </li>
+                <li>Non execution: {this.nonexe} </li>
+              </ul>
+              <h2> Latest habit category: {this.category}</h2>
+            </div>
+            <div style={{flex: "0 0 40%", padding:"1em"}}>
+              Select your goal:<br/>
+
+              Select time span:
+              
+            </div>
+            <div style={{flex: "1 1 90%", padding:"1em"}}>
+              <button className="mytradebt">Submit </button>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -267,19 +318,17 @@ class Person {
   }
   display() {
     if(document.getElementById(this.id.toString()+"marketstat")!= null) {
-      console.log("success");
       document.getElementById(this.id.toString()+"marketstat").style.display = "block";
       document.getElementById(this.id.toString()+"marketvolume").style.display = "block";
       document.getElementById(this.id.toString()+"markettable").style.display = "block";
+      document.getElementById(this.id.toString()+"trade").style.display = "block";
     }
-    console.log("failed");
   }
-
   rendermarkhead (){
     return(
       <div className="panel">
         <div className="panel-img delmar">
-          <img src={gethorse(this.id-1)} alt='' className="img-chopper" style={{width:"100%"}}/>
+          <img src={gethorse(this.id-1)} alt='' className="img-chopper" style={{width:"100%", maxWidth: "200px"}}/>
         </div>
         <div className="panel-info" style={{padding: "none"}}>
           <div className="panel panel-opa">
@@ -300,17 +349,26 @@ class Person {
                   <th>Non-execution:{this.nonexe}</th>
                 </tr></tbody>
               </table>
-              <button className="mytradebt" onClick={(e)=>{this.display()}} id={this.id.toString()+"display"}> Show more info </button>
-              <button className="mytradebt" onClick={(e)=>{this.display()}} id={this.id.toString()+"display"} style={{display: "none"}}> Show more info </button>
-              <button className="mytradebt" style={{float:"left"}}> Trade </button>
+              <button className="mytradebt" onClick={(e)=>{this.display()}} id={this.id.toString()+"display"}> Show info </button>
             </div>
           </div>
+        </div>
+        <div className="panel-info panel-gray delmar" style={{display: "none"}} id={this.id.toString()+"trade"}>
+          <h2>You want to?</h2>
+          <div style={{display: "flex", displayDirectoin:"row", flexWrap:"wrap"}}>
+            <div style={{flex: "0 0 40%", padding:"1em"}}> <button className="mytradebt" style={{float:"center", width:"80%"}} id={this.id.toString()+"BID"} onClick={(e)=>clickbid(e, this.id.toString()+"BID")}> Bid </button></div>
+            <div style={{flex: "0 0 40%", padding:"1em"}}> <button className="mytradebt" style={{float:"center", width:"80%"}} id={this.id.toString()+"ASK"} onClick={(e)=>clickask(e, this.id.toString()+"ASK")}> Ask </button></div>
+            <div style={{flex: "1 1 80%", fontSize:"1em", alignText:"center", padding: "1em"}}> 
+              Quantity: <br/><input placeholder="@" type="text" style={{fontSize:"1em", padding:"12px 14px", width: "50%"}}/><br/>
+              Price: <br/><input placeholder="should be between 0 to 1" type="text" style={{fontSize:"1em", padding:"12px 14px", width: "50%"}}/>
+            </div>
+          </div>
+          <br/>
+          <button className="mytradebt" style={{display: "block",marginLeft: "auto", marginRight: "auto", width: "40%"}}> Comfirm trade </button>
         </div>
       </div>
     )
   }
-
-
   rendermarket() {
     return(
       <div className="marketpanel">
