@@ -94,6 +94,24 @@ class PricePanel extends Component {
   }
 };
 
+var current = 0;
+
+class Goalinfo extends Component { 
+  constructor(props) {
+    super(props);
+    this.value=0;
+  }
+  updatevalue(v) {
+    this.value=v;
+  }
+  render() {
+    return(
+      <div >
+        <h2>Your current goal hardness: {current}</h2>
+      </div>
+    )
+  }
+};
 
 class Person {
   constructor(id, name, usrname, password, succ, fail, nonexe, category, betprice) {
@@ -142,6 +160,14 @@ class Person {
   resetTimespan() {
     this.timespan = 0;
   }
+  update(e, id, val) {
+    var x=document.getElementById(id); 
+    if(x != null) {
+      current = val;
+    }
+    ReactDOM.render(<Goalinfo/>, x);
+  }
+
   rendercreate() {
     return(
       <div id={this.id} className="panel">
@@ -167,23 +193,22 @@ class Person {
               Select your goal:(times per weeks)<br/>
               <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row", width:"100%"}}>
                 {this.resetChallengelevel()}
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=1}}>2(Easy)</button>
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=2}}>4(OK)</button>
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=3}}>6(Mod)</button>
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=4}}>8(Hard)</button>
-                <button className="challenge" style={{flex: "1 1 20%"}} onClick={(e)=>{this.challengeLevel=5}}>10 (Challenge)</button>
-                <h2 id={this.id.toString()+"challenge"}> 
-                  Your current goal hardness: {this.challengeLevel}
-                </h2>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.update(e,this.id.toString()+"challenge",2)}}>2(Easy)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.update(e,this.id.toString()+"challenge",4)}}>4(OK)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.update(e,this.id.toString()+"challenge",6)}}>6(Mod)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.update(e,this.id.toString()+"challenge",8)}}>8(Hard)</button>
+                <button className="challenge" style={{flex: "1 1 18%"}} onClick={(e)=>{this.update(e,this.id.toString()+"challenge",10)}}>10 (Challenge)</button>
+                <div id={this.id.toString()+"challenge"}> 
+                </div>
               </div>
               Select time span:(in weeks)
               <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row", width:"100%"}}>
                 {this.resetTimespan()}
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=1}}>1(Easy)</button>
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=2}}>2(OK)</button>
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=3}}>3(Mod)</button>
-                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=4}}>4(Hard)</button>
-                <button className="challenge" style={{flex: "1 1 20%"}} onClick={(e)=>{this.timespan=5}}>5 (Challenge)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.timespan=1}}>1(Easy)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.timespan=2}}>2(OK)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.timespan=3}}>3(Mod)</button>
+                <button className="challenge" style={{flex: "0 0 18%"}} onClick={(e)=>{this.timespan=4}}>4(Hard)</button>
+                <button className="challenge" style={{flex: "1 1 18%"}} onClick={(e)=>{this.timespan=5}}>5 (Challenge)</button>
                 <h2> 
                   Your current time span: {this.timespan}
                 </h2>
