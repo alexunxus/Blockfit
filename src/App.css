@@ -158,6 +158,15 @@
   overflow: scroll;
 }
 
+.challenge {
+  padding: 3px;
+  font-size: 1em;
+}
+.challenge:hover {
+  background: black;
+  color: white;
+}
+
 
 
 @keyframes App-logo-spin {

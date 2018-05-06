@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import './App.css';
 import './index.css';
+import ReactDOM from 'react-dom';
 
 const profilepic = {
   SUAN: require("./person1.jpg"),
@@ -74,6 +75,25 @@ function clickask(e, id) {
   }
 }
 
+class PricePanel extends Component { 
+  constructor(props) {
+    super(props);
+    this.count = 0;
+    this.value=100;
+  }
+  render() {
+    this.count++;
+    this.value += Math.sqrt(this.value);
+    return(
+      <div>
+        <h1> Quantity: {this.count}</h1>
+        The price one needs to pay: <br/>
+        <h1> {this.value}</h1>
+      </div>
+    )
+  }
+};
+
 
 class Person {
   constructor(id, name, usrname, password, succ, fail, nonexe, category, betprice) {
@@ -111,6 +131,17 @@ class Person {
       </div>
     )
   }
+  resetChallengelevel(){
+    this.challengeLevel = 0;
+    if(document.getElementById(this.id.toString()+"challenge")!=null){
+      document.getElementById(this.id.toString()+"challenge").display="none";
+      document.getElementById(this.id.toString()+"challenge").text=  "Your current goal hardness: "+this.challengeLevel;
+      //document.getElementById(this.id.toString()+"challenge").display="block";
+    }
+  }
+  resetTimespan() {
+    this.timespan = 0;
+  }
   rendercreate() {
     return(
       <div id={this.id} className="panel">
@@ -131,11 +162,32 @@ class Person {
               </ul>
               <h2> Latest habit category: {this.category}</h2>
             </div>
-            <div style={{flex: "0 0 40%", padding:"1em"}}>
-              Select your goal:<br/>
-
-              Select time span:
-              
+            <div style={{flex: "1 1 40%", padding:"1em"}}>
+              <h1>Your challeng: Monitoring your EKG!!!</h1>
+              Select your goal:(times per weeks)<br/>
+              <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row", width:"100%"}}>
+                {this.resetChallengelevel()}
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=1}}>2(Easy)</button>
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=2}}>4(OK)</button>
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=3}}>6(Mod)</button>
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.challengeLevel=4}}>8(Hard)</button>
+                <button className="challenge" style={{flex: "1 1 20%"}} onClick={(e)=>{this.challengeLevel=5}}>10 (Challenge)</button>
+                <h2 id={this.id.toString()+"challenge"}> 
+                  Your current goal hardness: {this.challengeLevel}
+                </h2>
+              </div>
+              Select time span:(in weeks)
+              <div style={{display:"flex", flexWrap:"wrap", flexDirection:"row", width:"100%"}}>
+                {this.resetTimespan()}
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=1}}>1(Easy)</button>
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=2}}>2(OK)</button>
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=3}}>3(Mod)</button>
+                <button className="challenge" style={{flex: "0 0 20%"}} onClick={(e)=>{this.timespan=4}}>4(Hard)</button>
+                <button className="challenge" style={{flex: "1 1 20%"}} onClick={(e)=>{this.timespan=5}}>5 (Challenge)</button>
+                <h2> 
+                  Your current time span: {this.timespan}
+                </h2>
+              </div>
             </div>
             <div style={{flex: "1 1 90%", padding:"1em"}}>
               <button className="mytradebt">Submit </button>
@@ -349,6 +401,12 @@ class Person {
                   <th>Non-execution:{this.nonexe}</th>
                 </tr></tbody>
               </table>
+              <table className="tb">
+                <tbody><tr>
+                  <th>Bid:{this.bid.length}</th>
+                  <th>Ask:{this.ask.length}</th>
+                </tr></tbody>
+              </table>
               <button className="mytradebt" onClick={(e)=>{this.display()}} id={this.id.toString()+"display"}> Show info </button>
             </div>
           </div>
@@ -356,11 +414,12 @@ class Person {
         <div className="panel-info panel-gray delmar" style={{display: "none"}} id={this.id.toString()+"trade"}>
           <h2>You want to?</h2>
           <div style={{display: "flex", displayDirectoin:"row", flexWrap:"wrap"}}>
-            <div style={{flex: "0 0 40%", padding:"1em"}}> <button className="mytradebt" style={{float:"center", width:"80%"}} id={this.id.toString()+"BID"} onClick={(e)=>clickbid(e, this.id.toString()+"BID")}> Bid </button></div>
-            <div style={{flex: "0 0 40%", padding:"1em"}}> <button className="mytradebt" style={{float:"center", width:"80%"}} id={this.id.toString()+"ASK"} onClick={(e)=>clickask(e, this.id.toString()+"ASK")}> Ask </button></div>
+            <div style={{flex: "0 0 40%", padding:"1em"}}> <button className="mytradebt" style={{float:"center", width:"80%"}} id={this.id.toString()+"BID"} 
+                 onClick={(e)=>{clickbid(e, this.id.toString()+"BID"); ReactDOM.render(<PricePanel/>, document.getElementById(this.id+"xx"))}}> Bid </button></div>
+            <div style={{flex: "0 0 40%", padding:"1em"}}> <button className="mytradebt" style={{float:"center", width:"80%"}} id={this.id.toString()+"ASK"} 
+                 onClick={(e)=>{clickask(e, this.id.toString()+"ASK"); ReactDOM.render(<PricePanel/>, document.getElementById(this.id+"xx"))}}> Ask </button></div>
             <div style={{flex: "1 1 80%", fontSize:"1em", alignText:"center", padding: "1em"}}> 
-              Quantity: <br/><input placeholder="@" type="text" style={{fontSize:"1em", padding:"12px 14px", width: "50%"}}/><br/>
-              Price: <br/><input placeholder="should be between 0 to 1" type="text" style={{fontSize:"1em", padding:"12px 14px", width: "50%"}}/>
+              <div id={this.id+"xx"}></div>
             </div>
           </div>
           <br/>
@@ -369,6 +428,7 @@ class Person {
       </div>
     )
   }
+  //Quantity: <br/><input placeholder="@" type="text" style={{fontSize:"1em", padding:"12px 14px", width: "50%"}}/><br/>
   rendermarket() {
     return(
       <div className="marketpanel">

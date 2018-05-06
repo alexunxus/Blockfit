@@ -141,23 +141,43 @@ class App extends Component {
         
 
 		      <div>
-            <Subtitle> About Blockfit </Subtitle>
+            <Subtitle> What is Blockfit? </Subtitle>
               <img className='App-logo' src={images.logo1} alt=''/>
+		          <p> We are Prediction Markets on Blockchain assisted by Wearable Devices.
+		      	  </p>
+              <Subtitle> Why to Blockfit? </Subtitle>
+              <p>
+                With such a strong motivation pushing you towards your health goals, you'll definitely achieve whatever you want to achieve with us.
+              </p>
+              <Subtitle> How to Blockfit? </Subtitle>
+              <p> Simplest platform to join in ever. All you need is to create an account, buy some tokens and plan for your own PM. You read to enjoy a healthier life?
+              </p>
+              <Subtitle> Features </Subtitle>
+              <h1>Prediction Market</h1>
+              <p>
+                A market for people to trade predictions of possible outcomes on certain events. Thanks to Efficient Market Hypothesis, PM provides very accurate predictions.
+              </p>
+              <h1>Blockchain</h1>
+              <p>
+                Blockchain brings enormous benefits for our trading system, for example, its decentralized nature ensures the necessary anonymity Blockfit demands.
+              </p>
+              <h1>Wearable Devices</h1>
+              <p>
+                Both on identification and physical figure measurements, wearable devices are trust-worthy and totally reliable.
+              </p>
+              <Subtitle> Logarithmic MSR </Subtitle>
+              First introduced by Robin Hanson in 2002, LMSR provides the math foundation for Blockfit's beloved automated market maker system.
+              <p>
+              </p>
+              <Subtitle> Ethereum </Subtitle>
+              <p>As the most successful and famous block chain platform, on Ethereum there are all the trades between Blockfittors and most important of all, the Blockcoins (tokens for trading)
               
-		          <p> Blockfit is an interesting contract market for those who wants
-		      	  to keep their own medical order such as exercising regularly, 
-		      	  measuring their blood sugar after per meals...etc. People who 
-		      	  enrolled in this project will have a "Goal" to finish. One should 
-		      	  aimed at making profits from finishing the goal. One can also be an
-		      	  "investor", a people who bets other people to win/fail. 
-		      	  </p>
-		      	  <p> The design incorporated the portraits of predictive market, 
-		      	  telemedicine and blockchain.
-		      	  </p>
-              <Subtitle> Trading policies </Subtitle>
-              <Subtitle> Buying/Selling coins </Subtitle>
-              <Subtitle> Rankboard </Subtitle>
-              <Subtitle> About us </Subtitle>
+              </p>
+              <Subtitle> ECG Identificaion </Subtitle>
+              <p>What a breakthrough in the 21st century. Now we have a profound way to clearly identify the planner, measure his/her physical figures and thus successfully run our model.
+              
+              </p>
+
 		      </div>
 	        <Wrapper>
 	        Founder: Shuan-Chi Tsai, Yu-Chi Hsieh, Alex Huang<br/>
